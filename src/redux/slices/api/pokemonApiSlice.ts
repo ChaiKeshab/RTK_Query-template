@@ -1,13 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { AllPokemonLResponse } from '../../../types/apiTypes'
 
-const baseURL = import.meta.env.VITE_BASE_URL
+const baseURL = import.meta.env.VITE_BASE_URL as string
 
-export const pokemonApiSlice = createApi({
+const pokemonApiSlice = createApi({
     reducerPath: 'pokemonApi',
     baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
 
-    //default refetchOnMountOrArgChange: false
+    /**default; refetchOnMountOrArgChange: false 
+     * @param {boolean | number} refetchOnMountOrArgChange
+     * */
     refetchOnMountOrArgChange: false,
     /*
     https://redux-toolkit.js.org/rtk-query/usage/cache-behavior#default-cache-behavior
@@ -26,6 +28,9 @@ export const pokemonApiSlice = createApi({
 
 
     //The refetchOnFocus option allows you to control whether RTK Query will try to refetch all subscribed queries after the application window regains focus.
+    /** defalult; refetchOnFocus: false, 
+     * @param {boolean} refetchOnFocus 
+     */
     refetchOnFocus: true,
     //If you specify this option alongside skip: true, this will not be evaluated until skip is false.
 
