@@ -1,22 +1,23 @@
-import {
-    useGetAllPokemonQuery,
-    useGetSpecificPokemonQuery,
-} from "../redux/slices/api/pokemonApiSlice"
+// import {
+//     useGetAllPokemonQuery,
+//     useGetSpecificPokemonQuery,
+// } from "../redux/slices/api/Test/pokemonApiSlice"
 
-import {
-    useGetPostsQuery,
-    useAddPostMutation
-} from '../redux/slices/api/jsonPlaceholderSlice'
+// import {
+//     useGetPostsQuery,
+//     useAddPostMutation
+// } from '../redux/slices/api/Test/jsonPlaceholderSlice'
 
 import {
     useGetAllNotesQuery,
     useAddNoteMutation,
     useUpdateNoteMutation
-} from '../redux/slices/api/mongoNotesSlice'
+} from '../redux/slices/api/Test/mongoNotesSlice'
 
 
-import { NoteBody, PostType } from "../types/apiTypes"
+import { NoteBody } from "../types/apiTypes"
 import { useState } from "react"
+import { Button } from "../components"
 
 
 /**
@@ -27,25 +28,25 @@ import { useState } from "react"
 const Home = () => {
 
     /************************************************************************************************************* */
-    const { data: allPokemon } = useGetAllPokemonQuery({ offset: 20 })
-    const names = allPokemon?.results.map(val => val.name) || []
+    // const { data: allPokemon } = useGetAllPokemonQuery({ offset: 20 })
+    // const names = allPokemon?.results.map(val => val.name) || []
 
-    // Conditional api call
-    const { data: specificPokemon } = useGetSpecificPokemonQuery(names[0], {
-        skip: names[0] ? false : true
-    })
+    // // Conditional api call
+    // const { data: specificPokemon } = useGetSpecificPokemonQuery(names[0], {
+    //     skip: names[0] ? false : true
+    // })
 
     /************************************************************************************************************* */
 
 
-    const { data: posts } = useGetPostsQuery()
-    const body: PostType = {
-        id: 9,
-        userId: 456,
-        title: "broke",
-        body: "contents"
-    }
-    const [addPost, { data: postMutateData, isLoading }] = useAddPostMutation()
+    // const { data: posts } = useGetPostsQuery()
+    // const body: PostType = {
+    //     id: 9,
+    //     userId: 456,
+    //     title: "broke",
+    //     body: "contents"
+    // }
+    // const [addPost, { data: postMutateData, isLoading }] = useAddPostMutation()
 
     /************************************************************************************************************* */
 
@@ -140,13 +141,22 @@ const Home = () => {
                     ))}
                 </div>
 
-                <button
+
+                <Button
+                    onClick={handleSubmit}
+                    variants={{ color: "primary", flat: true }}
+                >Label
+                </Button>
+
+
+                {/* <Button
                     disabled={!bodyTodo.title}
-                    className="bg-blue-500 px-4 py-2 rounded-md text-white disabled:bg-gray-300 disabled:text-black duration-300"
+                    variants={{ color: "primary", size: "md", disabled: !bodyTodo.title }}
+                    // className="bg-blue-500 px-4 py-2 rounded-md text-white disabled:bg-gray-300 disabled:text-black duration-300"
                     onClick={handleSubmit}
                 >
                     {!triggerEditMode ? "Submit" : "Edit"}
-                </button>
+                </Button> */}
             </div>
 
             <div className="flex justify-start items-start flex-wrap gap-3">
@@ -178,8 +188,26 @@ const Home = () => {
                 })}
             </div>
 
+            {/* <Button label="Secondary Medium" variants={{ size: 'md', color: 'secondary' }} />
+            <Button label="Primary Large" variants={{ size: 'lg', color: 'primary' }} />
+            <Button label="Secondary Small" variants={{ size: 'sm', color: 'secondary' }} />
+            <Button label="default" variants={{
+                color: {
+                    initial: 'primary',
+                    sm: 'success',
+                    md: 'secondary'
+                },
+                size: {
+                    initial: 'small',
+                    sm: 'medium',
+                    md: 'large'
+                }
+            }}
+            /> */}
 
-            <pre>{JSON.stringify(allNotes, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(allPokemon, null, 2)}</pre> */}
+
+
         </div>
     )
 }

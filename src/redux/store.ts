@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import rootReducer from './rootReducer'
-import pokemonApiSlice from './slices/api/pokemonApiSlice'
-import jsonPlaceholderSlice from './slices/api/jsonPlaceholderSlice'
-import mongoNotesSlice from './slices/api/mongoNotesSlice'
+import pokemonApiSlice from './slices/api/Test/pokemonApiSlice'
+import jsonPlaceholderSlice from './slices/api/Test/jsonPlaceholderSlice'
+import mongoNotesSlice from './slices/api/Test/mongoNotesSlice'
+import apiSlice from './slices/api/apiSlice'
 
 const store = configureStore({
     reducer: rootReducer,
@@ -11,8 +12,9 @@ const store = configureStore({
         gDM().concat(
             pokemonApiSlice.middleware,
             jsonPlaceholderSlice.middleware,
-            mongoNotesSlice.middleware
-        ),
+            apiSlice.middleware,
+            mongoNotesSlice.middleware,
+        )
 })
 
 // enable listener behavior if you have refetchOnFocus: true alongside skip: true

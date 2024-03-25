@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { AllPokemonLResponse } from '../../../types/apiTypes'
+import type { AllPokemonLResponse } from '../../../../types/apiTypes'
 
 const baseURL = import.meta.env.VITE_BASE_URL as string
 

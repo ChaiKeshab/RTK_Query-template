@@ -8,6 +8,7 @@ export interface Post {
 type PostsResponse = Post[]
 
 export const api = createApi({
+  reducerPath: 'test',
   baseQuery: fetchBaseQuery({ baseUrl: '/' }),
   tagTypes: ['Post'],
   endpoints: (build) => ({

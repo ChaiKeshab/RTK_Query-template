@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { NoteBody, NoteResponse, NoteType, UpdateNoteType } from "../../../types/apiTypes";
+import { NoteBody, NoteResponse, NoteType, UpdateNoteType } from "../../../../types/apiTypes";
 
 const baseURL = "http://localhost:5000/api/notes"
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlODA4MzQ0NTFmODIxYjQ1ZDRmZjhhIn0sImlhdCI6MTcwOTcwNTI2OH0.CPtMs6R1Z40_6BTGeGsnYBtZyo7kE2K4YARHuTLFkdo"
 
 const mongoNotesSlice = createApi({
+    reducerPath: 'mongoNotes',
     baseQuery: fetchBaseQuery({ baseUrl: baseURL, headers: { "auth-token": token } }),
 
     /**This is used by TypeScript to understand the types of tags used in the queries. It's purely for type checking. 
@@ -65,6 +66,10 @@ export const { useGetAllNotesQuery, useAddNoteMutation, useUpdateNoteMutation } 
 export default mongoNotesSlice
 
 /*
+    Docs: https://redux-toolkit.js.org/rtk-query/usage/automated-refetching#invalidating-tags
+
+
+   # FROM Gemini:
    While the backend API's getAllNotes endpoint always returns all notes, RTK Query can intelligently optimize refetching using cache invalidation tags, even if you invalidate a specific note's cache based on its ID.
   
    Here's how RTK Query handles this scenario:
